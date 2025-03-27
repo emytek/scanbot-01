@@ -8,12 +8,12 @@ import Toggle from "../../ui/toggle/Toggle";
 import Button from "../../ui/button/Button";
 import Select from "../../form/Select";
 
-interface UserFormData {
-  email: string;
-  password: string;
-  role: "admin" | "manager" | "user";
-  isActive: boolean;
-}
+// interface UserFormData {
+//   email: string;
+//   password: string;
+//   role: "admin" | "manager" | "user";
+//   isActive: boolean;
+// }
 
 interface FormData {
   email: string;

@@ -21,10 +21,8 @@ import Home from "./pages/Dashboard/Home";
 import useInstallPrompt from "./hooks/useInstallPrompt";
 import ApiTest from "./components/ApiTest";
 import Notifications from "./components/Notifications";
-import { fetchDataWithCache } from "./services/axiosService";
 import { useLocalNotification } from "./hooks/useLocalNotification";
 import { usePushNotifications } from "./hooks/usePushNotifications";
-import { useEffect, useState } from "react";import BarcodeScanner from "./components/BarcodeScanner";
 import ScannerBot from "./components/Scanner";
 import CreateUserForm from "./components/auth/Onboarding/CreateUser";
 import UserList from "./components/user-management/UserList";
@@ -35,8 +33,8 @@ import Barcode from 'react-barcode'
 
 export default function App() {
   const { promptVisible, showInstallPrompt } = useInstallPrompt();
-  const [scannedCode, setScannedCode] = useState<string | null>(null);
-  const [text, setText] = useState<string>(""); 
+  // const [scannedCode] = useState<string | null>(null);
+  // const [text, setText] = useState<string>(""); 
 
   useLocalNotification();
   usePushNotifications();
