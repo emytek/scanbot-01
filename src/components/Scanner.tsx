@@ -73,7 +73,7 @@ const ScannerBot: React.FC = () => {
     if (videoDeviceId) {
       const reader = new BrowserMultiFormatReader();
 
-      reader.decodeFromVideoDevice(videoDeviceId, "video", (result, error) => {
+      reader.decodeFromVideoDevice(videoDeviceId, "video", (result) => {
         if (result) {
           setResult(result.getText());
         }
