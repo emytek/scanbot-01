@@ -28,7 +28,6 @@ import CreateUserForm from "./components/auth/Onboarding/CreateUser";
 import UserList from "./components/user-management/UserList";
 import ForgotPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-import Barcode from 'react-barcode'
 import BarcodeGenerator from "./components/BarCodeGenerator";
 
 
