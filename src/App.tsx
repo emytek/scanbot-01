@@ -29,6 +29,7 @@ import UserList from "./components/user-management/UserList";
 import ForgotPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import Barcode from 'react-barcode'
+import BarcodeGenerator from "./components/BarCodeGenerator";
 
 
 export default function App() {
@@ -105,7 +106,7 @@ export default function App() {
       <div className="p-4 flex justify-center items-center">
       <ScannerBot />
 
-      <Barcode value="emmy" />
+      <BarcodeGenerator />
       {/* <h1>Testing...</h1>
       <input type="text" value={text} onChange={generateBarCode} /> */}
       
