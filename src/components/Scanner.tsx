@@ -30,13 +30,14 @@
 
 //   return (
 //     <>
-//       {result ? <p>Scanned code: {result}</p> : <p>Scanning</p>}
+//       {result ? <p>Scanned code: {result}</p> : <p>Scanning...</p>}
 //       <video id="video" width="600" height="400" />
 //     </>
 //   );
 // };
 
 // export default ScannerBot;
+
 
 
 import { useState, useEffect } from "react";
@@ -52,17 +53,26 @@ const ScannerBot: React.FC = () => {
     async function init() {
       try {
         const videoDevices = await reader.listVideoInputDevices();
+        console.log("Available Cameras:", videoDevices);
 
         if (videoDevices.length > 0) {
-          // Attempt to find the back camera (environment facing)
+          // Try selecting the back camera
           const backCamera = videoDevices.find((device) =>
-            device.label.toLowerCase().includes("back") || device.label.toLowerCase().includes("environment")
+            device.label.toLowerCase().includes("back")
           );
 
-          setVideoDeviceId(backCamera ? backCamera.deviceId : videoDevices[0].deviceId);
+          if (backCamera) {
+            console.log("Using Back Camera:", backCamera.label);
+            setVideoDeviceId(backCamera.deviceId);
+          } else {
+            console.log("Back camera not found, using default:", videoDevices[0].label);
+            setVideoDeviceId(videoDevices[0].deviceId);
+          }
+        } else {
+          console.warn("No video input devices found.");
         }
       } catch (error) {
-        console.error("Error accessing camera devices: ", error);
+        console.error("Error listing video input devices:", error);
       }
     }
 
@@ -72,33 +82,33 @@ const ScannerBot: React.FC = () => {
   useEffect(() => {
     if (videoDeviceId) {
       const reader = new BrowserMultiFormatReader();
-
       reader.decodeFromVideoDevice(videoDeviceId, "video", (result) => {
         if (result) {
+          console.log("Scanned Result:", result.getText());
           setResult(result.getText());
         }
       });
-
-      return () => {
-        reader.reset();
-      };
     }
   }, [videoDeviceId]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h2 className="text-xl font-semibold text-gray-700 mb-4">Scan a Barcode</h2>
-      {result ? (
-        <p className="text-green-600 font-bold text-lg">Scanned Code: {result}</p>
-      ) : (
-        <p className="text-gray-500">Scanning...</p>
-      )}
-      <video id="video" className="w-full max-w-md border border-gray-300 rounded-md" />
+    <div className="flex flex-col items-center justify-center p-4">
+      <h2 className="text-xl font-semibold mb-4">Barcode Scanner</h2>
+      <video id="video" className="border rounded-lg shadow-lg w-[600px] h-[400px]" />
+      <p className="mt-4 text-lg">
+        {result ? `Scanned Code: ${result}` : "Scanning..."}
+      </p>
     </div>
   );
 };
 
 export default ScannerBot;
+
+
+
+
+
+
 
 
 
