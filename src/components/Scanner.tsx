@@ -39,7 +39,6 @@
 // export default ScannerBot;
 
 
-
 import { useState, useEffect } from "react";
 import { BrowserMultiFormatReader } from "@zxing/library";
 
@@ -52,11 +51,16 @@ const ScannerBot: React.FC = () => {
 
     async function init() {
       try {
+        // Request camera access explicitly
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        stream.getTracks().forEach(track => track.stop()); // Immediately stop stream after permission check
+
+        // List available video devices
         const videoDevices = await reader.listVideoInputDevices();
         console.log("Available Cameras:", videoDevices);
 
         if (videoDevices.length > 0) {
-          // Try selecting the back camera
+          // Prefer back camera if available
           const backCamera = videoDevices.find((device) =>
             device.label.toLowerCase().includes("back")
           );
@@ -72,7 +76,7 @@ const ScannerBot: React.FC = () => {
           console.warn("No video input devices found.");
         }
       } catch (error) {
-        console.error("Error listing video input devices:", error);
+        console.error("Error accessing camera:", error);
       }
     }
 
@@ -82,6 +86,8 @@ const ScannerBot: React.FC = () => {
   useEffect(() => {
     if (videoDeviceId) {
       const reader = new BrowserMultiFormatReader();
+      console.log("Starting camera with device ID:", videoDeviceId);
+
       reader.decodeFromVideoDevice(videoDeviceId, "video", (result) => {
         if (result) {
           console.log("Scanned Result:", result.getText());
@@ -93,7 +99,7 @@ const ScannerBot: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center p-4">
-      <h2 className="text-xl font-semibold mb-4">Barcode Scanner</h2>
+      <h2 className="text-xl font-semibold mb-4">Bev Barcode Scanner</h2>
       <video id="video" className="border rounded-lg shadow-lg w-[600px] h-[400px]" />
       <p className="mt-4 text-lg">
         {result ? `Scanned Code: ${result}` : "Scanning..."}
@@ -103,6 +109,7 @@ const ScannerBot: React.FC = () => {
 };
 
 export default ScannerBot;
+
 
 
 

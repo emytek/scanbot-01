@@ -105,7 +105,7 @@ export default function App() {
       <div className="p-4 flex justify-center items-center">
       <ScannerBot />
 
-      <BarcodeGenerator />
+      {/* <BarcodeGenerator /> */}
       {/* <h1>Testing...</h1>
       <input type="text" value={text} onChange={generateBarCode} /> */}
       
