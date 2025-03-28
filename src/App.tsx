@@ -28,7 +28,7 @@ import CreateUserForm from "./components/auth/Onboarding/CreateUser";
 import UserList from "./components/user-management/UserList";
 import ForgotPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-import BarcodeGenerator from "./components/BarCodeGenerator";
+// import BarcodeGenerator from "./components/BarCodeGenerator";
 
 
 export default function App() {
