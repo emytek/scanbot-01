@@ -23,4 +23,14 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    port: 5175, // Ensure this matches your dev server port
+    proxy: {
+      '/api': {
+        target: 'http://35.177.236.20:3006', // Backend URL
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Removes /api from requests
+      },
+    },
+  },
 });

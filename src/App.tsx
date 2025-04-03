@@ -19,22 +19,24 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import useInstallPrompt from "./hooks/useInstallPrompt";
-import ApiTest from "./components/ApiTest";
 import Notifications from "./components/Notifications";
 import { useLocalNotification } from "./hooks/useLocalNotification";
 import { usePushNotifications } from "./hooks/usePushNotifications";
+import { useEffect, useState } from "react";
+import BarcodeScanner from "./components/BarcodeScanner";
 import ScannerBot from "./components/Scanner";
-import CreateUserForm from "./components/auth/Onboarding/CreateUser";
+// import CreateUserForm from "./components/auth/Onboarding/CreateUser";
 import UserList from "./components/user-management/UserList";
 import ForgotPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-// import BarcodeGenerator from "./components/BarCodeGenerator";
+import Barcode from 'react-barcode'
+import RegisterUser from "./components/auth/Onboarding/CreateUser";
 
 
 export default function App() {
-  const { promptVisible, showInstallPrompt } = useInstallPrompt();
-  // const [scannedCode] = useState<string | null>(null);
-  // const [text, setText] = useState<string>(""); 
+  // const { promptVisible, showInstallPrompt } = useInstallPrompt();
+  const [scannedCode, setScannedCode] = useState<string | null>(null);
+  const [text, setText] = useState<string>(""); 
 
   useLocalNotification();
   usePushNotifications();
@@ -85,27 +87,25 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/reset-password" element={<SignUp />} />
 
           {/* Onboarding */}
-          <Route path="/create-user" element={<CreateUserForm />} />
+          <Route path="/create-user" element={<RegisterUser />} />
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
 
-      {promptVisible && (
+      {/* {promptVisible && (
         <button onClick={showInstallPrompt} className="p-4">
           Install PWA
         </button>
-      )}
-      <ApiTest />
+      )} */}
+  
+      {/* <div className="p-4 flex justify-center items-center"> */}
+      {/* <ScannerBot />
 
-      <div className="p-4 flex justify-center items-center">
-      <ScannerBot />
-
-      {/* <BarcodeGenerator /> */}
+      <Barcode value="emmy" /> */}
       {/* <h1>Testing...</h1>
       <input type="text" value={text} onChange={generateBarCode} /> */}
       
@@ -122,7 +122,7 @@ export default function App() {
           </button>
         </div>
       )} */}
-    </div>
+    {/* </div> */}
     </>
   );
 }

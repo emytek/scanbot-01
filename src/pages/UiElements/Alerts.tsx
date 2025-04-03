@@ -47,11 +47,11 @@ export default function Alerts() {
         <ComponentCard title="Error Alert">
           <Alert
             variant="error"
-            title="Error Message"
+            title="Error Message Test"
             message="Be cautious when performing this action."
-            showLink={true}
-            linkHref="/"
-            linkText="Learn more"
+            showLink={false}
+            // linkHref="/"
+            // linkText="Learn more"
           />
           <Alert
             variant="error"
