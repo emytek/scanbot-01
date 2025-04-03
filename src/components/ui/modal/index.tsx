@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+// import { useRef, useEffect } from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   className,
   showCloseButton = true,
-  isFullscreen = false,
+  // isFullscreen = false,
 }) => {
   if (!isOpen) return null;
 

@@ -18,25 +18,25 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
-import useInstallPrompt from "./hooks/useInstallPrompt";
+// import useInstallPrompt from "./hooks/useInstallPrompt";
 import Notifications from "./components/Notifications";
 import { useLocalNotification } from "./hooks/useLocalNotification";
 import { usePushNotifications } from "./hooks/usePushNotifications";
-import { useEffect, useState } from "react";
-import BarcodeScanner from "./components/BarcodeScanner";
-import ScannerBot from "./components/Scanner";
+// import { useState } from "react";
+// import BarcodeScanner from "./components/BarcodeScanner";
+// import ScannerBot from "./components/Scanner";
 // import CreateUserForm from "./components/auth/Onboarding/CreateUser";
 import UserList from "./components/user-management/UserList";
 import ForgotPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
-import Barcode from 'react-barcode'
+// import Barcode from 'react-barcode'
 import RegisterUser from "./components/auth/Onboarding/CreateUser";
 
 
 export default function App() {
   // const { promptVisible, showInstallPrompt } = useInstallPrompt();
-  const [scannedCode, setScannedCode] = useState<string | null>(null);
-  const [text, setText] = useState<string>(""); 
+  // const [scannedCode, setScannedCode] = useState<string | null>(null);
+  // const [text, setText] = useState<string>(""); 
 
   useLocalNotification();
   usePushNotifications();
