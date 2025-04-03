@@ -140,7 +140,7 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'sonner';
 import axiosInstance from "../../../api/axiosInstance";
 import { useForm } from "react-hook-form";
-import { Modal } from "../../../components/ui/modal";
+// import { Modal } from "../../../components/ui/modal";
 import Button from "../../../components/ui/button/Button";
 import Alert from "../../../components/ui/alert/Alert";
 import { Loader } from "../../ui/loader/Loader";
@@ -170,22 +170,22 @@ const RegisterUser = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  //const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const onSubmit = async (data: RegisterFormData) => {
     try {
       setLoading(true);
       setError(null);
-      setSuccessMessage(null);
+      // setSuccessMessage(null);
       toast.loading("Creating account...");
 
-      const response = await axiosInstance.post("/api/account/register", {
+      await axiosInstance.post("/api/account/register", {
         ...data,
         appName: "wyze-addon",
-      });
+      });      
 
-      setSuccessMessage("User registered successfully!");
+      // setSuccessMessage("User registered successfully!");
       toast.success("User registered successfully!");
       reset(); // Clear the form after successful submission
 
